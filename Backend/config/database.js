@@ -4,11 +4,8 @@ const DATABASE_URL = process.env.DATABASE_URL
 
 const connectDB = async (req , res) => {
     try{
-        mongoose.connect({
-            DATABASE_URL
-        }).then(() => {
-            console.log("Successfully connect with cloud database")
-        })
+        await mongoose.connect(DATABASE_URL);
+        console.log("Databese connect successfully...")
     }catch(error) {
         console.log(error.message);
         console.log("Failed to connect with Cloud Database");
