@@ -1,22 +1,26 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    username: {
+const EmployeeSchema = new mongoose.Schema({
+    employee_name: {
+        type: String,
+        required: true,
+        maxLength: 40
+    },
+    employee_email: {
         type: String,
         required: true,
         maxLength: 20
     },
-    email: {
-        type: String,
-        required: true,
-        maxLength: 20
-    },
-    password: {
+    employee_id: {
         type: String,
         required: true,
         maxLength: 20,
     },
-    phone: {
+    employee_department: {
+        type: String,
+        required: true,
+    },
+    employee_phone: {
         type: String,
         require: true,
         maxLength: 12,
@@ -26,4 +30,4 @@ const UserSchema = new mongoose.Schema({
 // const User = mongoose.model(UserSchema);
 // module.exports = User
     //  OR
-module.exports = mongoose.model("User" , UserSchema)
+module.exports = mongoose.model("Employee" , EmployeeSchema)

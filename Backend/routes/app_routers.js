@@ -2,11 +2,11 @@
 const express = require('express')
 const router = express.Router();
 
-const getAllUsers = require('../controllers/getAllUsers')
-const createUser = require('../controllers/createUser')
+const getAllEmployees = require('../controllers/getAllEmployees')
+const createEmployee = require('../controllers/createEmployee')
 
-router.post("/createUser" , createUser)
-router.get("/getAllUsers" , getAllUsers);
+router.post("/createEmployee" , createEmployee)
+router.get("/getAllEmployees" , getAllEmployees);
 
 
 module.exports = router
