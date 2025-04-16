@@ -9,13 +9,31 @@ const connectDB = async (req , res) => {
     }catch(error) {
         console.log(error.message);
         console.log("Failed to connect with Cloud Database");
-        res.status(500).json({
-            success: false,
-            message: "Failed to connect with DB",
-            error: error.message,
-        })
         process.exit(0)
     }
 }
 
 module.exports = connectDB
+
+
+
+// const mongoose = require('mongoose');
+// require('dotenv').config();
+
+// const DATABASE_URL = process.env.DATABASE_URL;
+
+// const connectDB = () => {
+//     mongoose.connect(DATABASE_URL , {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     })
+//     .then(() => {
+//         console.log("MongoDB connect successfully...")
+//     })
+//     .catch((error) => {
+//         console.log("Failed to connect the database")
+//         console.log(error.message);
+//     })
+// }
+
+// module.exports = connectDB;

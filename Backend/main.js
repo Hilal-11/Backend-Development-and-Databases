@@ -15,8 +15,10 @@ app.get('/' , (req , res) => {
 
 app.use("/api/v1" , appRoutes);
 
-connectDB().then(()=> {
-    app.listen(PORT , () => {
-        console.log(`App is running on PORT ${PORT}`)
-    })
+
+app.listen(PORT , () => {
+    console.log(`App is running on PORT ${PORT}`)
 })
+
+
+connectDB()
