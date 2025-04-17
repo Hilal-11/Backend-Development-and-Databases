@@ -3,13 +3,14 @@ const Employee = require('../models/EmployeeDataModel')
 
 const createEmployee = async (req , res) => {
     try {
-        const { employee_name , employee_email , employee_id , employee_department , employee_phone } = req.body;
+        const { employee_name , employee_email , employee_title , employee_department , employee_role , employee_phone } = req.body;
 
         const response = await Employee.create({
             employee_name,
             employee_email,
-            employee_id,
+            employee_title,
             employee_department,
+            employee_role,
             employee_phone
         })
 
