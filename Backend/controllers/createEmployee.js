@@ -30,5 +30,4 @@ const createEmployee = async (req , res) => {
         })
     }
 }
-
 module.exports = createEmployee
