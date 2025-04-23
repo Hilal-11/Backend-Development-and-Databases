@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const app_routes = require('./routes/app_routes')
-const connectDB = require('./config/database')
+// const connectDB = require('./config/database')
 const PORT = process.env.PORT
 
 
@@ -15,4 +15,4 @@ app.listen(PORT , () => {
     console.log(`App is running on PORT ${PORT}`)
 })
 
-connectDB();
+require('./config/database').connectDB();
