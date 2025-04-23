@@ -14,10 +14,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    isAdmin: {
+    role: {
         type: Boolean,
-        require: true,
-        default: false,
+        enum: ["Admin" , "Student", "Visitor"]
+        
     }
 })
 

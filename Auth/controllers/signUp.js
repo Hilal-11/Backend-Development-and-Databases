@@ -2,12 +2,12 @@ const User = require('../model/UserSchema')
 
 const signUp = async (req , res) => {
     try{
-        const { username , email , password , isAdmin} = req.body;
+        const { username , email , password , role} = req.body;
         const createUser = await User.create({
             username,
             email,
             password,
-            isAdmin
+            role
         });
 
         res.status(201).json({
