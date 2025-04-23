@@ -13,9 +13,22 @@ const signUp = async (req , res) => {
                 message: "User already exists"
             })
         }
-        // Encrypt password
+        // Encrypt password example 1
         const saltRound = 10;
         const hash_password = await bcrypt.hash(password , saltRound);
+
+        // Encrypt password example 2
+        let hash_password2;
+        try{
+            const saltRound2 = 10;
+            const hash_password2 = await bcrypt.hash(password , saltRound2);
+        }catch(error){
+            return res.status(500).json({
+                success: false ,
+                message: "Error in hashing password"
+            })
+        }
+
 
         const createUser = await User.create({
             username,
