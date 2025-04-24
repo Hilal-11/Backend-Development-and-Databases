@@ -6,6 +6,14 @@ const login = async (req , res) => {
     try{
         const { email , password } = req.body;
 
+        // validation
+        if(email == '' || password == '') {
+            return res.status(400).json({
+                success: false,
+                message: "Please Give the email and password"
+            })
+        }
+
         // check if email exists
         let userExist = await User.findOne({ email });
 
@@ -26,10 +34,7 @@ const login = async (req , res) => {
 
         if(comparePassword){
 
-            
-      
-
-
+                // example 1 // way 1
             // res.status(201).json({
             //     success: true,
             //     message: "Successfully Login user",
@@ -45,6 +50,10 @@ const login = async (req , res) => {
             // }) 
 
 
+                // example 2 // way 2
+                // example 2 // way 2
+
+
             const token = jwt.sign(
                         payload ,
                         process.env.SIGNITURE,
@@ -57,7 +66,11 @@ const login = async (req , res) => {
                 httpOnly: true,
             }
 
-            userExist.token = token
+
+                /// important to add on object new item ("token": "token")
+            userExist = userExist.toObject()
+            userExist.token = token;
+            // (password --> undefined) at client side because of security purpose
             userExist.password = undefined
 
             res.cookie("token", token , options).status(200).json({
