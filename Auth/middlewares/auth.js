@@ -10,7 +10,9 @@ const bcrypy = require('bcrypt')
 require('dotenv').config();
 
 
-const auth = async (req , res , next) => {
+// FIRST MIDDLEWARE
+
+exports.auth = async (req , res , next) => {
     try {
         // Extract JWT Web Token
         // OTHER WAYS TO FETCH JWT TOKEN
@@ -45,21 +47,44 @@ const auth = async (req , res , next) => {
     }
 }
 
-const student = async (req , res , next) => {
-    try {
 
+// SECOND MIDDLEWARE
+exports.student = async (req , res , next) => {
+    try {
+        if(req.user.role !== "Student") {
+            return res.status(401).json({
+                success: false,
+                message: "This is protected route for students"
+            })
+        }
+        next();
     }catch(error){
-        
+        res.status(500).json({
+            success: false,
+            message: "users role is not matching"
+        })
     }
 }
 
-const admin = async (req , res , next) => {
+
+// THIRD MIDDLEWARE
+
+exports.admin = async (req , res , next) => {
     try {
+        if(req.user.role !== "Admin") {
+            return res.status(401).json({
+                success: false,
+                message: "This is protected route for students"
+            })
+        }
+        next()
 
     }catch(error){
-        
+        res.status(500).json({
+            success: false,
+            message: ""
+        })
     }
 }
 
 
-module.exports = { auth , student , admin };
