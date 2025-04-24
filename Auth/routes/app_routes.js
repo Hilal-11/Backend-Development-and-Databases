@@ -9,6 +9,13 @@ router.post('/signUp' , signUp);
 router.post('/login', login);
 
 // Protected Routes
+router.get("/test" , auth , (req , res) => {
+    res.json({
+        success: true,
+        message: "wel come to protected route for TEST"
+    }) 
+});
+
 router.get("/student" , auth , student , (req , res) => {
     res.json({
         success: true,
