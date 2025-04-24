@@ -15,7 +15,7 @@ router.get("/student" , auth , isStudent , (req , res) => {
         message: "wel come to protected route for students and visitors"
     }) 
 });
-router.get("/isAdmin" , isAdmin , (req , res) => {
+router.get("/admin" , isAdmin , (req , res) => {
     res.json({
         success: true,
         message: "Wel Come to Admin Protected Route."
