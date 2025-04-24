@@ -6,7 +6,6 @@
 
 
 const jwt = require('jsonwebtoken');
-const bcrypy = require('bcrypt')
 require('dotenv').config();
 
 
@@ -16,7 +15,7 @@ exports.auth = async (req , res , next) => {
     try {
         // Extract JWT Web Token
         // OTHER WAYS TO FETCH JWT TOKEN
-        const token = req.body.token || req.cookies.token;
+        const token = req.body.token;
 
         if(!token) {
             return res.status(401).json({
@@ -82,7 +81,7 @@ exports.admin = async (req , res , next) => {
     }catch(error){
         res.status(500).json({
             success: false,
-            message: ""
+            message: "access denied"
         })
     }
 }
