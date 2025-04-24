@@ -1,5 +1,7 @@
 const User = require('../model/UserSchema')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const login = async (req , res) => {
     try{
         const { email , password } = req.body;
@@ -20,7 +22,16 @@ const login = async (req , res) => {
         if(compsrePassword){
             res.status(201).json({
                 success: true,
-                message: "Successfully Login user"
+                message: "Successfully Login user",
+                token: await jwt.sign({
+                    userId: userExist._id.toString(),
+                    email: userExist.email
+                },
+                process.env.SIGNITURE,
+                {
+                    expiresIn: '12d'
+                }
+            )
             }) 
         }else{
             res.status(401).json({

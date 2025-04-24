@@ -1,5 +1,7 @@
 const User = require('../model/UserSchema')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const signUp = async (req , res) => {
     try{
         const { username , email , password , role} = req.body;
@@ -18,16 +20,16 @@ const signUp = async (req , res) => {
         const hash_password = await bcrypt.hash(password , saltRound);
 
         // Encrypt password example 2
-        let hash_password2;
-        try{
-            const saltRound2 = 10;
-            const hash_password2 = await bcrypt.hash(password , saltRound2);
-        }catch(error){
-            return res.status(500).json({
-                success: false ,
-                message: "Error in hashing password"
-            })
-        }
+        // let hash_password2;
+        // try{
+        //     const saltRound2 = 10;
+        //     hash_password2 = await bcrypt.hash(password , saltRound2);
+        // }catch(error){
+        //     return res.status(500).json({
+        //         success: false ,
+        //         message: "Error in hashing password"
+        //     })
+        // }
 
 
         const createUser = await User.create({
@@ -40,7 +42,14 @@ const signUp = async (req , res) => {
         res.status(201).json({
             success: true,
             message: "User created successfully",
-            response: createUser,
+            token: await jwt.sign({ 
+                userId: createUser._id.toString(),
+                email: createUser.email } ,
+            process.env.SIGNITURE ,
+            
+            { 
+                expiresIn: '10d'
+            }),
         })
 
     }catch(error) {
