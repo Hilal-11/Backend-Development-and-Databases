@@ -10,7 +10,7 @@ const login = async (req , res) => {
         if(email == '' || password == '') {
             return res.status(400).json({
                 success: false,
-                message: "Please Give the email and password"
+                message: "Please fill email and password correctly"
             })
         }
 
