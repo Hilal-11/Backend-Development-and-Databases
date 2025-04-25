@@ -1,6 +1,7 @@
 const File = require('../models/File')
 const cloudinary = require('cloudinary').v2
 const imageUpload = async ( req , res) => {
+
     function checkSupportedType(type , supportedType){
         return supportedType.includes(type)
     }
@@ -33,7 +34,20 @@ const imageUpload = async ( req , res) => {
 
         // UPLOAD ON CLOUDINARY
         const response = fileUploadToCloudinary(file , 'Cloudinary_11')
-        
+        console.log(response)
+        // SAVE ENTRY ON DATABASE(mongoDb)
+        // const fileData = await File.create({
+        //     name,
+        //     tags,
+        //     email,
+        //     imageUrl
+        // })
+
+        res.status(200).json({
+            success: true,
+            message: "Image successfully uploaded"
+        })
+
     }catch(error) {
         console.log(error.message);
         res.status(400).json({
