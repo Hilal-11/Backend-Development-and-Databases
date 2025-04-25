@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const mediaSchema = new mongoose.Schema({
+const FileSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -16,4 +16,4 @@ const mediaSchema = new mongoose.Schema({
         required: true
     },
 })
-module.exports = mongoose.model('Media_Model' , mediaSchema)
+module.exports = mongoose.model('File' , FileSchema)
