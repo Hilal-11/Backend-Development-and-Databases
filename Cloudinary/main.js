@@ -7,7 +7,6 @@ const connectDB = require('./config/database')
 const cloudinaryConnect = require('./config/cloudinary')
 const PORT = process.env.PORT
 
-
 app.use(express.json())
 app.use(fileUpload())
 app.use('/api/v1' , app_routes);
