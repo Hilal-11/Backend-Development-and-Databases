@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
+const fileUpload = require('express-fileupload')
 require('dotenv').config();
 const app_routes = require('./routes/app_routes')
 const connectDB = require('./config/database')
+const cloudinary = require('./config/cloudinary')
 const PORT = process.env.PORT
 
 
 app.use(express.json())
+app.use(fileUpload())
 app.use('/api/v1' , app_routes);
 
 app.get('/', (req , res) => {
@@ -18,3 +21,4 @@ app.listen(PORT , () => {
 })
 
 connectDB()
+cloudinary.cloudinaryConnect()
