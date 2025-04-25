@@ -16,13 +16,13 @@ router.get("/test" , auth , (req , res) => {
     }) 
 });
 
-router.get("/student" , auth , student , (req , res) => {
+router.get("/students" , auth , student , (req , res) => {
     res.json({
         success: true,
         message: "wel come to protected route for students and visitors"
     }) 
 });
-router.get("/admin" , admin , (req , res) => {
+router.get("/admin" , auth , admin , (req , res) => {
     res.json({
         success: true,
         message: "Wel Come to Admin Protected Route."

@@ -10,7 +10,6 @@ require('dotenv').config();
 
 
 // FIRST MIDDLEWARE
-
 exports.auth = async (req , res , next) => {
     try {
         // Extract JWT Web Token
@@ -23,7 +22,6 @@ exports.auth = async (req , res , next) => {
                 message: "Token missing"
             })
         }
-
         // VERIFY THE TOKEN
         try{
             const decode = jwt.verify(token , process.env.SIGNITURE)
@@ -36,7 +34,9 @@ exports.auth = async (req , res , next) => {
                 message: "Invalid token"
             })
         }
-
+        // SALA TUU MARA DUSHMAN HAAN
+        // DEMANG KHARAB KRR DIYA KAL SAA SALA ⚔️😹😂
+        next();
     }catch(error){
         console.log(error.message)
         res.status(400).json({
@@ -67,7 +67,6 @@ exports.student = async (req , res , next) => {
 
 
 // THIRD MIDDLEWARE
-
 exports.admin = async (req , res , next) => {
     try {
         if(req.user.role !== "Admin") {
@@ -77,7 +76,6 @@ exports.admin = async (req , res , next) => {
             })
         }
         next()
-
     }catch(error){
         res.status(500).json({
             success: false,
@@ -85,5 +83,3 @@ exports.admin = async (req , res , next) => {
         })
     }
 }
-
-
