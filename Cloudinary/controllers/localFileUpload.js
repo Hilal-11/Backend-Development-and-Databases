@@ -8,7 +8,7 @@ const localFileUpload = async ( req , res) => {
         let path = __dirname + "/files/" + Date.now()
         console.log(path)
         file.mv(path , (err) => {
-            console.log(err.message)
+            console.log(err)
         });
 
         res.json({
