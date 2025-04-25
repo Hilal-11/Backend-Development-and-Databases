@@ -5,7 +5,7 @@ const localFileUpload = async ( req , res) => {
         const file = req.files.file;
         console.log(file);
 
-        let path = 
+        let path = __dirname + "/files/" + Date.now()
 
     }catch(error) {
         console.log(error.message);
