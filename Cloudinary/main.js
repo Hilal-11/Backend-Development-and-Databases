@@ -4,7 +4,7 @@ const fileUpload = require('express-fileupload')
 require('dotenv').config();
 const app_routes = require('./routes/app_routes')
 const connectDB = require('./config/database')
-const cloudinary = require('./config/cloudinary')
+const cloudinaryConnect = require('./config/cloudinary')
 const PORT = process.env.PORT
 
 
@@ -21,4 +21,4 @@ app.listen(PORT , () => {
 })
 
 connectDB()
-cloudinary.cloudinaryConnect()
+cloudinaryConnect()
