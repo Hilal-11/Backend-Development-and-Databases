@@ -1,12 +1,16 @@
 const File = require('../models/File')
 const localFileUpload = async ( req , res) => {
     try {
-        // const { name , fileUrl , tags , email } = req.body;
+
+        // FILE FETCH FROM REQUEST
         const file = req.files.file;
         console.log(file);
 
+        // EXTRACT THE FILE PATG AND FILE EXTENSION || 
         let path = __dirname + "/files/" + Date.now() + `.${file.name.split('.')[1]}`
         console.log(path)
+
+        // MOVE THE LOCAL/ RESPONSE FILE ON PATH USING MOVE (mv) FUNCTION
         file.mv(path , (err) => {
             console.log(err)
         });
