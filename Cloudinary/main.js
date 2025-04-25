@@ -10,11 +10,11 @@ app.use(express.json())
 app.use('/api/v1' , app_routes);
 
 app.get('/', (req , res) => {
-    res.send("<h1>Authentication and Autherization in Backend</h1>")
+    res.send("<h1>File Upload Cloudinary Backend Project</h1>")
 })
 
 app.listen(PORT , () => {
     console.log(`App is running on PORT ${PORT}`)
 })
 
-connectDB();
+connectDB()
