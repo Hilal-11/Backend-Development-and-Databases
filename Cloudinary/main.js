@@ -8,7 +8,10 @@ const cloudinaryConnect = require('./config/cloudinary')
 const PORT = process.env.PORT
 
 app.use(express.json())
-app.use(fileUpload())
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/'
+}))
 app.use('/api/v1' , app_routes);
 
 app.get('/', (req , res) => {

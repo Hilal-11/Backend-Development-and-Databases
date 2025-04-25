@@ -7,23 +7,25 @@ const imageUpload = async ( req , res) => {
     }
 
     async function fileUploadToCloudinary(file , folder) {
+       try {
         const options = {folder}
-        return await cloudinary.uploader.upload(file.tempFile , options).then(() => {
-            console.log("File upload on cloudinary successfully")
-        })
+        return await cloudinary.uploader.upload(file.tempFilePath , options);
+       }catch(err){
+            console.log(err.message)
+       }
     }
     try {
         // FETCH THE DATA
-        const { name , tags , email } = req.body;
+        const { name , tags , email , imageUrl} = req.body;
         const file = req.files.imageFile;
         console.log(file);
 
         // VALIDATION
 
         const supportedType = ['jpg', 'jpeg' , 'png'];
-        const type = `.${file.name.split('.')[1].toLowerCase}`;
+        const type = `${file.name.split('.')[1].toLowerCase()}`;
 
-        isSupported = checkSupportedType(type, supportedType);
+        const isSupported = checkSupportedType(type, supportedType);
 
         if(!isSupported) {
             return res.status(400).json({
@@ -33,18 +35,19 @@ const imageUpload = async ( req , res) => {
         }
 
         // UPLOAD ON CLOUDINARY
-        const response = fileUploadToCloudinary(file , 'Cloudinary_11')
+        const response = await fileUploadToCloudinary(file , 'Cloudinary_11')
         console.log(response)
         // SAVE ENTRY ON DATABASE(mongoDb)
-        // const fileData = await File.create({
-        //     name,
-        //     tags,
-        //     email,
-        //     imageUrl
-        // })
+        const fileData = await File.create({
+            name,
+            tags,
+            email,
+            imageUrl
+        })
 
         res.status(200).json({
             success: true,
+            response: fileData,
             message: "Image successfully uploaded"
         })
 
