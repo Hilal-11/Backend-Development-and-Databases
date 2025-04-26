@@ -21,7 +21,7 @@ const videoUpload = async ( req , res) => {
 
     try {
         //  FETCH DATA  
-        const { name , tags , email } = req.body;
+        const { name , tags , email , fileUrl} = req.body;
         const file = req.files.videoFile;
 
         //  VALIDATION
@@ -45,7 +45,7 @@ const videoUpload = async ( req , res) => {
             name,
             tags,
             email,
-            videoUrl: response.secure_url
+            fileUrl: response.secure_url,
         })
         res.status(200).json({
             success: true,

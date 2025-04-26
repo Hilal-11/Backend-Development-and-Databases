@@ -16,7 +16,7 @@ const imageUpload = async ( req , res) => {
     }
     try {
         // FETCH THE DATA
-        const { name , tags , email , imageUrl} = req.body;
+        const { name , tags , email , fileUrl} = req.body;
         const file = req.files.imageFile;
         console.log(file);
 
@@ -42,7 +42,7 @@ const imageUpload = async ( req , res) => {
             name,
             tags,
             email,
-            imageUrl: response.secure_url,
+            fileUrl: response.secure_url,
         })
 
         res.status(200).json({
