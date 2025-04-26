@@ -8,10 +8,12 @@ const videoUpload = async ( req , res) => {
 
     async function uploadVideoToCloudinary(file , folder) {
         try{
-            const options = {folder};
-            return await cloudinary.uploader.upload(file , options , {
-                resource_type: 'mp4'
-            });
+            const options = {
+                folder,
+                resource_type: "video"
+            };
+            console.log(file.tempFilePath)
+            return await cloudinary.uploader.upload(file.tempFilePath , options);
         }catch(error) {
             console.log(error.message)
         }
@@ -43,6 +45,7 @@ const videoUpload = async ( req , res) => {
             name,
             tags,
             email,
+            videoUrl: response.secure_url
         })
         res.status(200).json({
             success: true,
