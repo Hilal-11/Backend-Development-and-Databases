@@ -39,7 +39,7 @@ const videoUpload = async ( req , res) => {
         console.log(error.message);
         res.status(400).json({
             success: false,
-            message: "Filed to "
+            message: "Filed to upload the video on Cloudinary"
         })
     }
 }
