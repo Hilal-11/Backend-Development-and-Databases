@@ -9,7 +9,9 @@ const videoUpload = async ( req , res) => {
     async function uploadVideoToCloudinary(file , folder) {
         try{
             const options = {folder};
-            return await cloudinary.uploader.upload(file , options);
+            return await cloudinary.uploader.upload(file , options , {
+                resource_type: 'mp4'
+            });
         }catch(error) {
             console.log(error.message)
         }
@@ -17,13 +19,13 @@ const videoUpload = async ( req , res) => {
 
     try {
         //  FETCH DATA  
-        const { name , tags , email , videoUrl} = req.body;
+        const { name , tags , email } = req.body;
         const file = req.files.videoFile;
 
         //  VALIDATION
         const support = ['mp4' , 'avi', 'mov', 'flv', 'webm'];
         const type = `${file.name.split('.')[1].toLowerCase()}`;
-
+        console.log("File type: ", type)
         const isSupported = checkFileFormetSupport(type , support);
 
         if(!isSupported) {
@@ -34,14 +36,13 @@ const videoUpload = async ( req , res) => {
         }
 
         // UPLOAD ON CLOUDINARY
-        const response = await uploadVideoToCloudinary(file , 'Cloudinary-11');
+        const response = await uploadVideoToCloudinary(file , 'Cloudinary_11');
         console.log(response)
         // DATABASE EXTRY
         const fileData = await File.create({
             name,
             tags,
             email,
-            videoUrl
         })
         res.status(200).json({
             success: true,
