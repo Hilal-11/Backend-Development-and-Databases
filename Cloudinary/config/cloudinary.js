@@ -15,4 +15,4 @@ const cloudinaryConnect = async () => {
     }
 }
 
-module.exports = cloudinaryConnect;
+module.exports = cloudinaryConnect; 
