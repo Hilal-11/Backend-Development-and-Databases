@@ -10,14 +10,14 @@ const videoUpload = async ( req , res) => {
         try{
             const options = {folder};
             return await cloudinary.uploader.upload(file , options);
-            
         }catch(error) {
             console.log(error.message)
         }
     }
 
     try {
-        const { name , tags , email } = req.body;
+        //  FETCH DATA  
+        const { name , tags , email , videoUrl} = req.body;
         const file = req.files.videoFile;
 
         //  VALIDATION
@@ -41,7 +41,7 @@ const videoUpload = async ( req , res) => {
             name,
             tags,
             email,
-            videoUrl: response.secure_url
+            videoUrl
         })
         res.status(200).json({
             success: true,
