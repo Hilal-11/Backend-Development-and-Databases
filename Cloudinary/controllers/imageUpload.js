@@ -42,7 +42,7 @@ const imageUpload = async ( req , res) => {
             name,
             tags,
             email,
-            imageUrl
+            imageUrl: response.secure_url,
         })
 
         res.status(200).json({
@@ -50,7 +50,7 @@ const imageUpload = async ( req , res) => {
             response: fileData,
             message: "Image successfully uploaded"
         })
-
+ 
     }catch(error) {
         console.log(error.message);
         res.status(400).json({
