@@ -1,7 +1,21 @@
 const File = require('../models/File');
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2;
 
 const videoUpload = async ( req , res) => {
+    function checkFileFormetSupport(file , supportedTypes) {
+        return supportedTypes.includes(file)
+    }
+
+    async function uploadVideoToCloudinary(file , folder) {
+        try{
+            const options = {folder};
+            return await cloudinary.uploader.upload(file , options);
+            
+        }catch(error) {
+            console.log(error.message)
+        }
+    }
+
     try {
         const { name , tags , email } = req.body;
         const file = req.files.videoFile;
