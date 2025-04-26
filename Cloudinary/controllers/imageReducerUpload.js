@@ -8,11 +8,11 @@ const imageReducerUpload = async ( req , res) => {
     }
     async function fileUploadToCloudinary(file , folder) {
        try {
-        const options = {folder}
-        return await cloudinary.uploader.upload(file.tempFilePath , options , {
+        // const options = {folder}
+        return await cloudinary.uploader.upload(file.tempFilePath , {
             transformation: [
                 {
-                    quality: "auto", fetch_format: "auto"
+                    folder, quality: "q_50", fetch_format: "auto"
                 }
             ]
         });
