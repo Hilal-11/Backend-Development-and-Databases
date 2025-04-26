@@ -10,7 +10,7 @@ const videoUpload = async ( req , res) => {
         try{
             const options = {
                 folder,
-                resource_type: "video"
+                resource_type: "auto"
             };
             console.log(file.tempFilePath)
             return await cloudinary.uploader.upload(file.tempFilePath , options);
