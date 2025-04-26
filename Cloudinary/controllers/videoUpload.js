@@ -18,7 +18,7 @@ const videoUpload = async ( req , res) => {
             console.log(error.message)
         }
     }
-
+               
     try {
         //  FETCH DATA  
         const { name , tags , email , fileUrl} = req.body;
