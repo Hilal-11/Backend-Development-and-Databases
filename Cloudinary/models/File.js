@@ -21,8 +21,8 @@ const FileSchema = new mongoose.Schema({
 
 FileSchema.post('save' , async function(docs)  {
     try{
-        // Transpoter
-        let transpoter = nodemailer.transpoter({
+        // Transpoter   shift this code to config
+        let transpoter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
             port: 587,
             auth: {
@@ -36,12 +36,14 @@ FileSchema.post('save' , async function(docs)  {
         })
         // email send
         let info = await transpoter.sendMail({
-            from: 'Webmastery.pro',
+            from: process.env.SENDER_EMAIL,
             to: docs.email,
             subject: 'Hii there i am Hilal from webMastery.pro',
             text: 'Hello everyone',
             html: '<b>Webmastery.pro</b>'
         });
+
+        console.log(info)
     }catch(error){
         console.log(error.message)
     }
