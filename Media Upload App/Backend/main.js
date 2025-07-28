@@ -1,9 +1,9 @@
 const express = require('express')
 require('dotenv').config();
 const cors = require('cors')
-const appRoutes = require('')
-const connectDB = require('');
-
+const appRoutes = require('./routes/appRoutes')
+const connectDB = require('./config/database');
+const cloudinaryConnect = require('./config/cloudinary')
 const PORT = process.env.PORT
 
 const corsOptions = {
@@ -27,3 +27,4 @@ app.listen(PORT , () => {
 })
 
 connectDB()
+cloudinaryConnect()
