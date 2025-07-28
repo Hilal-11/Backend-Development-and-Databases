@@ -11,6 +11,8 @@ const cloudinaryConnect = async () => {
             api_secret: process.env.API_SECRET
         })
 
+        console.log("Cloudinary connection is done")
+
     }catch(error) {
         console.log(error.message);
         console.log("Failed to connect with Cloudinary CDN")
