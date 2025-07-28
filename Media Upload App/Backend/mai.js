@@ -19,7 +19,7 @@ const app = express();
 
 
 app.get('/', (req , res) => {
-    res.send();
+    res.send("Media Upload MERN Application");
 })
 
 app.listen(PORT , () => {
