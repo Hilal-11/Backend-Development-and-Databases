@@ -6,10 +6,6 @@ const MediaModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    fileUrl: {
-        type: String,
-        required: true,
-    },
     tag : {
         type: String,
         required: true
@@ -17,7 +13,10 @@ const MediaModel = new mongoose.Schema({
     email :{
         type: String,
         required: true,
-        unique: true
+    },
+    fileUrl: {
+        type: String,
+        required: true,
     },
 } , { timestamps : true})
 
@@ -25,27 +24,27 @@ const MediaModel = new mongoose.Schema({
 // POST MIDDLEWARE
 MediaModel.post("save" , async function(docs) {
     try{
-        console.log(docs)
+        console.log("DOCS = ",docs)
         // transpoter using nodemailer
-        let transpoter = nodemailer.transpoter({
+        let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
-            port: 587,
+            port: process.env.MAIL_PORT,
             auth : {
                 user: process.env.MAIL_USER,
-                password: process.env.MAIL_PASSWORD
+                pass: process.env.MAIL_PASS     
             },
-            secure: false,
-            tls: {
-                rejectUnauthorized: false, // <-- allow self-signed certificates
-            }
+            // secure: false,
+            // tls: {
+            //     rejectUnauthorized: false, // <-- allow self-signed certificates
+            // }
             
         })
         // IIFE ---> Immediate Invoked function execution....after upload medai on cloud [Cloudinary]    
         
-         const info = await transpoter.sendMail({
-            from: "Hilal-11 Media Upload",
-            to: info.email,
-            subject: `Hello ${info.name} How are, welcome to the Hilal-11 Media Upload Application`,
+         let info = await transporter.sendMail({
+            from: "Hilal-11 -- Media Upload Application",
+            to: docs.email,
+            subject: `Hello ${docs.name} How are, welcome to the Hilal-11 Media Upload Application`,
             text: "welcome to the Hilal-11 Media Upload Application",
             html: "<b>Hi there and welcome in the Media Upload on CDN Software AApplication</b>"
         })
@@ -54,10 +53,8 @@ MediaModel.post("save" , async function(docs) {
     }catch(error){
         console.log(error.message);
         console.log("Failed to send the mail using nodemailer")
-        return resizeBy.json({
-            success: false,
-        })
+        
     }
 })
 
-export const Media = mongoose.model("Media" , MediaModel);
+module.exports = mongoose.model("Media" , MediaModel);
