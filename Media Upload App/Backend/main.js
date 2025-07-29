@@ -4,6 +4,7 @@ const cors = require('cors')
 const appRoutes = require('./routes/appRoutes')
 const connectDB = require('./config/database');
 const cloudinaryConnect = require('./config/cloudinary')
+const fileUpload = require('express-fileupload')
 const PORT = process.env.PORT
 
 const corsOptions = {
@@ -13,6 +14,9 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(express.json())
+
+app.use(fileUpload());
+
 app.use('/api/v1' , appRoutes);
 
 const app = express();
