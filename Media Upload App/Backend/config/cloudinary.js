@@ -1,5 +1,4 @@
 const cloudinary = require('cloudinary')
-const { model } = require('mongoose')
 require('dotenv').config()
 
 
@@ -16,8 +15,7 @@ const cloudinaryConnect = async () => {
     }catch(error) {
         console.log(error.message);
         console.log("Failed to connect with Cloudinary CDN")
-        process.exit(1)
     }
 }
 
-model.exports = cloudinaryConnect
+module.exports = cloudinaryConnect
