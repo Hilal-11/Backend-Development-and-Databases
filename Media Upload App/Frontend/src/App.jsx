@@ -1,34 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import React from "react"
+import Navigation from "./components/Navigation"
+import HoroComponent from "./components/HoroComponent"
+import { SiCloudinary } from "react-icons/si";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <div className="w-full h-svh">
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Navigation />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        <HoroComponent/>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+      <div className="flex justify-center items-center">
+        <button className=" cursor-pointer py-4 px-20 rounded-2xl shadow-sm shadow-slate-900 poppins-bold flex gap-4">Go to Media Upload <span className="text-2xl"><SiCloudinary/></span> </button>
+      </div>
+      <br /><br /><br />
+    </div>
+      
   )
 }
 
