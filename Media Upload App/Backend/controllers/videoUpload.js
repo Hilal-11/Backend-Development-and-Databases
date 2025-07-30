@@ -2,6 +2,7 @@ const Model = require('../models/MediaModel.model')
 const cloudinary = require('cloudinary')
 
 const videoUpload = async (req , res) => {
+    
     function isSupportedType (type , supportedTypes) {
         return supportedTypes.includes(type)
     }

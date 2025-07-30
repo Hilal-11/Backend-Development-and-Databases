@@ -40,7 +40,7 @@ const imageUpload = async (req , res) => {
             fileUrl: response.secure_url
         })
         
-        res.status(200).json({
+        res.status(201).json({
             success: true,
             message: "successfully upload on cloudinary and save entry on DB"
         })
