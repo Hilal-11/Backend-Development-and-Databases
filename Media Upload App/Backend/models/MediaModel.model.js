@@ -24,7 +24,7 @@ const MediaModel = new mongoose.Schema({
 // POST MIDDLEWARE
 MediaModel.post("save" , async function(docs) {
     try{
-        console.log("DOCS = ",docs)
+        
         // transpoter using nodemailer
         let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
