@@ -30,7 +30,7 @@ const imageUpload = async (req , res) => {
         }
         // Upload on Cloudinary
 
-        const response = await uplodaFileToCloudinary(file , "Solitude")
+        const response = await uplodaFileToCloudinary(file , 'Cloudinary_11')
         console.log(response)
         // db entry
         const fileData = await Model.create({

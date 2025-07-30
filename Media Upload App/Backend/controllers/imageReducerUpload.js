@@ -31,19 +31,20 @@ const imageReducerUpload = async (req , res) => {
 
 
         // upload on cloudinary
-        const response = await imageReducerUploadToCloudinary(file , "Solitude")
+        const response = await imageReducerUploadToCloudinary(file , 'Cloudinary_11')
 
         // entry on database
         const fileData = await Model.create({
             name,
             tag,
             email,
-            fileUrl: response.secure_url
+            imageUrl: response.secure_url
         })
 
         res.status(201).json({
             success: true,
-            message: "Successfully upload on cloudinary and entry on database"
+            message: "Successfully upload on cloudinary and entry on database",
+            response: fileData
         })
 
     }catch(error) {
