@@ -10,7 +10,7 @@ import { SiCloudinary } from "react-icons/si";
 function HoroComponent() {
     const navigate = useNavigate('')
   return (
-    <div className='lg:w-[80%] mx-auto py-10 lg:py-20 my-10'>
+    <div className='lg:w-[100%] mx-auto py-10 lg:py-20 my-10'>
         <div>
             <div className='lg:text-center'>
                 <h1 className='text-4xl lg:text-7xl poppins-extrabold px-6 text-shadow-sm text-shadow-slate-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi rem optio fugiat.</h1>
@@ -18,7 +18,7 @@ function HoroComponent() {
             </div>
         </div>
 
-        <div className='flex flex-wrap justify-evenly w-full h-auto px-6 gap-10'>
+        <div className='w-full flex flex-wrap justify-evenly w-full h-auto px-6 gap-10 '>
             <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <RiImageAddFill/>
