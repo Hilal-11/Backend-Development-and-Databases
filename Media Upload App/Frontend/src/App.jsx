@@ -1,21 +1,19 @@
 import React from "react"
 import Navigation from "./components/Navigation"
 import HoroComponent from "./components/HoroComponent"
-import { SiCloudinary } from "react-icons/si";
+import { Router , Route, useNavigate, Routes } from "react-router-dom"
+import MediaUpload from "./components/MediaUpload";
 function App() {
+  
   return (
-    <div className="w-full h-svh">
+    <div className="w-full lg:w-[80%] h-svh">
       <div>
         <Navigation />
       </div>
-      <div>
-        <HoroComponent/>
-      </div>
-
-      <div className="flex justify-center items-center">
-        <button className=" cursor-pointer py-4 px-20 rounded-2xl shadow-sm shadow-slate-900 poppins-bold flex gap-4">Go to Media Upload <span className="text-2xl"><SiCloudinary/></span> </button>
-      </div>
-      <br /><br /><br />
+    <Routes>
+      <Route path="/" element={<HoroComponent/>} />
+      <Route path="/mediaUploadCloud" element={<MediaUpload/>} />
+    </Routes>
     </div>
       
   )
