@@ -18,7 +18,7 @@ function HoroComponent() {
             </div>
         </div>
 
-        <div className='w-full flex flex-wrap justify-evenly w-full h-auto px-6 gap-10 '>
+        <div className='w-full flex flex-wrap justify-evenly h-auto px-6 gap-10 '>
             <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <RiImageAddFill/>
