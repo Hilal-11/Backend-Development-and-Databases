@@ -4,7 +4,11 @@ import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { TiDocumentAdd } from "react-icons/ti";
 import { FcAddImage } from "react-icons/fc";
 import { CiCirclePlus } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
+import { SiCloudinary } from "react-icons/si";
+
 function HoroComponent() {
+    const navigate = useNavigate('')
   return (
     <div className='lg:w-[80%] mx-auto py-10 lg:py-20 my-10'>
         <div>
@@ -51,6 +55,10 @@ function HoroComponent() {
                     <span className='text-5xl text-blue-600'><CiCirclePlus /></span>
                 </div>
             </div>
+        </div>
+    <br /> <br />
+        <div className="flex justify-center items-center my-16">
+                <button onClick={() => navigate('/mediaUploadCloud')} className=" cursor-pointer py-4 px-20 rounded-2xl shadow-sm shadow-slate-900 poppins-bold flex gap-4">Go to Media Upload <span className="text-2xl"><SiCloudinary/></span></button>
         </div>
     </div>
   )
