@@ -16,6 +16,7 @@ const imageUpload = async (req , res) => {
         const { name , tag , email , fileUrl } = req.body;
         const file = req.files.imageFile
         console.log(file)
+        console.log(name , tag , email , fileUrl)
         
         // VALIDATION
         const supportedTypes = ['jpg', 'png', 'jpeg', 'webg']
