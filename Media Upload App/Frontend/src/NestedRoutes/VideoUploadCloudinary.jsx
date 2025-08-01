@@ -3,14 +3,21 @@ import { useContext } from 'react'
 import { AppContext } from '../../Context/CreateContext'
 function VideoUploadCloudinary() {
 
+
+  // const extractVideos = (cloudinaryData) => {
+  //   return cloudinaryData.filter(dataItem => dataItem.fileUrl.split('.')[1].toLowerCase() === 'mp4')
+  // }
+
   const { cloudinaryData } = useContext(AppContext)
+
+  // const cloudinaryVideos = extractVideos(cloudinaryData)
 
   return (
     <div className='grid grid-cols-2 gap-3 w-full h-[600px] lg:flex lg:flex-wrap justify-evenly lg:gap-6'>
       {
         cloudinaryData.map((item) => (
           <div className='lg:w-[360px] lg:h-[300px] rounded-lg bg-white shadow-sm shadow-slate-800 cursor-pointer'>
-            <img className="w-full h-full rounded-lg" src={item.fileUrl} alt="Error" />
+            <img src={item.fileUrl}></img>
           </div>
         ))
       }
