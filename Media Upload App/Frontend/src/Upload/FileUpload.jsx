@@ -1,104 +1,137 @@
 import React from 'react'
-import { useState , useEffect } from 'react'
+import { useState  } from 'react'
+import { useNavigate } from 'react-router-dom'
 function FileUpload() {
-
+  const navigate = useNavigate('')
   const [formData , setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
-    tags: '',
-    file: '',
+    tag: '',
   })
 
-  const URL = "http://localhost/api/v1"  
-  const imageFormats = ["jpg" , "png", "jpeg" , "webp"];
-  const videoFormats = ["mp4" , "mov", "avi" , "webm"];
-  const imageReducerFormats = ["jpg" , "png", "jpeg" , "webp"];
-  const docsFormats = ["doc", "docx" , "txt" , "pdf"];
+  const URL = "http://localhost:3000/api/v1"  
+  // const imageFormats = ["jpg" , "png", "jpeg" , "webp"];
+  // const videoFormats = ["mp4" , "mov", "avi" , "webm"];
+  // const imageReducerFormats = ["jpg" , "png", "jpeg" , "webp"];
+  // const docsFormats = ["doc", "docx" , "txt" , "pdf"];
 
-  const handleFormChange = (event) => {
-    const { name , value } = event.target;
+
+const handleFormChange = (event) => {
+  const { name, value, type, files } = event.target;
+  if (type === "file") {
     setFormData(prev => ({
       ...prev,
-      [name] : value
-    }))
+      file: files[0],
+    }));
+  } else {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   }
+};
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formData)
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('tag', formData.tag);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('imageFile', formData.file); 
 
     // POST Request
     // for image Upload
-    const getExtension = formData.file.split('.')[1].toLocaleLowerCase();
-    if(imageFormats.includes(getExtension)){
-      const response = await fetch(`${URL}/imageUploadCloudinary`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'appliccation/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      console.log(response);
-      if(response.ok) {
-        console.log("successfully image Upload on cludinary")
+    // const getExtension = formData.file.split('.')[1].toLocaleLowerCase();
+
+    try{
+          const response = await fetch(`http://localhost:3000/api/v1/imageUpload`, {
+          method: "POST",
+          body: formDataToSend
+        })
+          console.log(response);
+          if(response.ok) {
+            console.log("successfully image Upload on cludinary")
+            navigate('/mediaUploadCloud')
+          }
+      }catch(error) {
+        console.log(error.message)
       }
 
-    }
+    // if(imageFormats.includes(getExtension)){
+    //   try{
+    //       const response = await fetch(`${URL}/imageUpload`, {
+    //       method: "POST",
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify(formData)
+    //     })
+    //       console.log(response);
+    //       if(response.ok) {
+    //         console.log("successfully image Upload on cludinary")
+    //       }
+    //   }catch(error) {
+    //     console.log(error.message)
+    //   }
+
+    // }
     
 
     // for Video Upload
 
-    if(videoFormats.includes(getExtension)){
-      const response = await fetch(`${URL}videoUploadCloudinary` , {
-        method: "POST",
-        headers: {
-          'Content-Type': 'applicatio/json'
-        },
-        body: JSON.stringify(formData)
-      })
+    // if(videoFormats.includes(getExtension)){
+    //   const response = await fetch(`${URL}/videoUpload` , {
+    //     method: "POST",
+    //     headers: {
+    //       'Content-Type': 'applicatio/json'
+    //     },
+    //     body: JSON.stringify(formData)
+    //   })
 
-      console.log(response)
-      if(response.ok) {
-        console.log("successfully Video Upload on cludinary")
-      }
-    }
+    //   console.log(response)
+    //   if(response.ok) {
+    //     console.log("successfully Video Upload on cludinary")
+    //   }
+    // }
 
-    if(imageReducerFormats.includes(getExtension)){
-      const response = await fetch(`${URL}/imageReducerUploadCloudinary` , {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      console.log(response)
-      if(response.ok) {
-        console.log("Successfully upload image on cloudinary")
-      }
-    }
+    // if(imageReducerFormats.includes(getExtension)){
+    //   const response = await fetch(`${URL}/imageReducerUplead` , {
+    //     method: "POST",
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(formData)
+    //   })
+    //   console.log(response)
+    //   if(response.ok) {
+    //     console.log("Successfully upload image on cloudinary")
+    //   }
+    // }
     
 
-    if(docsFormats.includes(getExtension)){
-      const response = await fetch(`${URL}/docsUploadCloudinary` , {
-        method: "POST",
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
+    // if(docsFormats.includes(getExtension)){
+    //   const response = await fetch(`${URL}/docsUploadCloudinary` , {
+    //     method: "POST",
+    //     headers: {
+    //       'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(formData)
+    //   })
 
-      console.log(response);
-      if(response.ok) {
-        console.log("successfully Docs Upload on cloudinary")
-      }
-    }
+    //   console.log(response);
+    //   if(response.ok) {
+    //     console.log("successfully Docs Upload on cloudinary")
+    //   }
+    // }
 
 
     setFormData({
-      username: '',
+      name: '',
       email: '',
-      tags: '',
-      file: '',
+      tag: '',
+      fileUrl: '',
     })
   }
 
@@ -114,7 +147,7 @@ function FileUpload() {
                   <input
                   onChange={handleFormChange}
                     type="text"
-                    name="username"
+                    name="name"
                     value={formData.username}
                     className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
@@ -136,8 +169,8 @@ function FileUpload() {
                   <input
                   onChange={handleFormChange}
                     type="text"
-                    name="tags"
-                    value={formData.tags}
+                    name="tag"
+                    value={formData.tag}
                     className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
@@ -145,10 +178,10 @@ function FileUpload() {
                 <div>
                   <label className="block text-gray-700 font-semibold mb-2">File Upload</label>
                   <input
-                  onChange={handleFormChange}
+                    onChange={e => setFormData(prev => ({ ...prev, file: e.target.files[0] }))}
                     type="file"
                     name="file"
-                    value={formData.file}
+                    // value={formData.file}
                     className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
