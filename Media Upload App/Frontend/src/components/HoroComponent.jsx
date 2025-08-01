@@ -19,7 +19,7 @@ function HoroComponent() {
         </div>
 
         <div className='w-full flex flex-wrap justify-evenly h-auto px-6 gap-10 '>
-            <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
+            <div onClick={() => navigate('/fileUpload')} className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <RiImageAddFill/>
                 </div>
@@ -28,7 +28,7 @@ function HoroComponent() {
                     <span className='text-5xl text-blue-600'><CiCirclePlus /></span>
                 </div>
             </div>
-            <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
+            <div onClick={() => navigate('/fileUpload')} className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <AiOutlineVideoCameraAdd/>
                 </div>
@@ -37,7 +37,7 @@ function HoroComponent() {
                     <span className='text-5xl text-blue-600'><CiCirclePlus /></span>
                 </div>
             </div>
-            <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
+            <div onClick={() => navigate('/fileUpload')} className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <FcAddImage/>
                 </div>
@@ -46,7 +46,7 @@ function HoroComponent() {
                     <span className='text-5xl text-blue-600'><CiCirclePlus /></span>
                 </div>
             </div>
-            <div className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
+            <div onClick={() => navigate('/fileUpload')} className='w-full lg:w-[300px] h-[300px] cursor-pointer rounded-2xl shadow-sm shadow-gray-500 p-4'>
                 <div className='flex justify-center items-center text-[12rem] text-gray-700'>
                     <TiDocumentAdd/>
                 </div>
