@@ -9,6 +9,7 @@ import ImageUploadCloudinary from './NestedRoutes/ImageUploadCloudinary'
 import VideoUploadCloudinary from './NestedRoutes/VideoUploadCloudinary'
 import ImageReducerUploadCloudinary from './NestedRoutes/ImageReducerUploadCloudinary'
 import DocsUploadCloudinary from './NestedRoutes/DocsUploadCloudinary'
+import FileUpload from "./Upload/FileUpload";
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
           <Route path="imageReducerUploadCloudinary" element={<ImageReducerUploadCloudinary />} />
           <Route path="docsUploadCloudinary" element={<DocsUploadCloudinary />} />
         </Route>
+        <Route path="/fileUpload" element={<FileUpload />}></Route>
       </Routes>
     </div>
       
