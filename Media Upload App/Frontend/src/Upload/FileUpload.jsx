@@ -10,8 +10,8 @@ function FileUpload() {
   })
 
   const URL = "http://localhost:3000/api/v1"  
-  // const imageFormats = ["jpg" , "png", "jpeg" , "webp"];
-  // const videoFormats = ["mp4" , "mov", "avi" , "webm"];
+  const imageFormats = ["jpg" , "png", "jpeg" , "webp"];
+  const videoFormats = ["mp4" , "mov", "avi" , "webm"];
   // const imageReducerFormats = ["jpg" , "png", "jpeg" , "webp"];
   // const docsFormats = ["doc", "docx" , "txt" , "pdf"];
 
@@ -35,20 +35,33 @@ const handleFormChange = (event) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formData)
-    const formDataToSend = new FormData();
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('tag', formData.tag);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('imageFile', formData.file); 
+    const formDataToSend1 = new FormData();
+    formDataToSend1.append('name', formData.name);
+    formDataToSend1.append('tag', formData.tag);
+    formDataToSend1.append('email', formData.email);
+    formDataToSend1.append('imageFile', formData.file); 
 
-    // POST Request
+
+    const formDataToSend2 = new FormData();
+    formDataToSend2.append('name', formData.name);
+    formDataToSend2.append('tag', formData.tag);
+    formDataToSend2.append('email', formData.email);
+    formDataToSend2.append('videoFile', formData.file);
+
+    console.log(formDataToSend2)
+    // POST Request 
     // for image Upload
-    // const getExtension = formData.file.split('.')[1].toLocaleLowerCase();
+    const getExtension = formData.file.name.split('.')[1].toLocaleLowerCase();
+    console.log(getExtension)
 
-    try{
+
+    
+
+    if(imageFormats.includes(getExtension)){
+      try{
           const response = await fetch(`http://localhost:3000/api/v1/imageUpload`, {
           method: "POST",
-          body: formDataToSend
+          body: formDataToSend1
         })
           console.log(response);
           if(response.ok) {
@@ -58,43 +71,23 @@ const handleFormChange = (event) => {
       }catch(error) {
         console.log(error.message)
       }
-
-    // if(imageFormats.includes(getExtension)){
-    //   try{
-    //       const response = await fetch(`${URL}/imageUpload`, {
-    //       method: "POST",
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify(formData)
-    //     })
-    //       console.log(response);
-    //       if(response.ok) {
-    //         console.log("successfully image Upload on cludinary")
-    //       }
-    //   }catch(error) {
-    //     console.log(error.message)
-    //   }
-
-    // }
+    }
     
 
     // for Video Upload
 
-    // if(videoFormats.includes(getExtension)){
-    //   const response = await fetch(`${URL}/videoUpload` , {
-    //     method: "POST",
-    //     headers: {
-    //       'Content-Type': 'applicatio/json'
-    //     },
-    //     body: JSON.stringify(formData)
-    //   })
+    if(videoFormats.includes(getExtension)){
+      const response = await fetch(`${URL}/videoUpload` , {
+        method: "POST",
+        body: formDataToSend2
+      })
 
-    //   console.log(response)
-    //   if(response.ok) {
-    //     console.log("successfully Video Upload on cludinary")
-    //   }
-    // }
+      console.log(response)
+      if(response.ok) {
+        console.log("successfully Video Upload on cludinary")
+        navigate('/videoUploadCloudinary')
+      }
+    }
 
     // if(imageReducerFormats.includes(getExtension)){
     //   const response = await fetch(`${URL}/imageReducerUplead` , {
