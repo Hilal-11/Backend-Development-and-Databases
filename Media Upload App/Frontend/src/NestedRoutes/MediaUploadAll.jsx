@@ -4,7 +4,7 @@ import { AppContext } from '../../Context/CreateContext'
 function MediaUploadAll() {
   const { cloudinaryData } = useContext(AppContext)
   return (
-    <div className='grid grid-cols-2 gap-3 w-full  lg:flex lg:flex-wrap justify-evenly lg:gap-6'>
+    <div className='grid grid-cols-2 gap-3 w-full  lg:flex lg:flex-wrap justify-evenly lg:gap-1'>
      {
       cloudinaryData.map((item) => (
         <div className='lg:w-[360px] lg:h-[300px] rounded-lg bg-white shadow-sm shadow-slate-800 cursor-pointer'>
